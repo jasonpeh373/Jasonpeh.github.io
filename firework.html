@@ -68,27 +68,13 @@ class Particle {
     }
 }
 
-// 创建烟花效果，添加 x 和 y 参数
-function createFirework(x, y) {
+// 创建烟花效果
+function createFirework() {
+    let x = Math.random() * canvas.width;
+    let y = Math.random() * canvas.height;
     let color = [Math.random() * 256, Math.random() * 256, Math.random() * 256]; // 随机颜色
     for (let i = 0; i < 100; i++) {
         particles.push(new Particle(x, y, color));
-    }
-}
-
-// 绘制"新年快乐"的字样
-function drawHappyNewYear() {
-    let text = "新年快乐";
-    let startX = (canvas.width - text.length * 50) / 2;
-    let startY = canvas.height / 2;
-    for (let i = 0; i < text.length; i++) {
-        for (let j = 0; j < font[text[i]].length; j++) {
-            for (let k = 0; k < font[text[i]][j].length; k++) {
-                if (font[text[i]][j][k] === 1) {
-                    createFirework(startX + i * 50 + k * 10, startY + j * 10);
-                }
-            }
-        }
     }
 }
 
@@ -106,54 +92,16 @@ function mainLoop() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
     updateParticles();
     if (particles.length === 0) {
-        drawHappyNewYear();
-    } else {
-        requestAnimationFrame(mainLoop);
+        createFirework();
     }
+    requestAnimationFrame(mainLoop);
 }
 
 // 烟花粒子数组
 var particles = [];
 
-// 自动放置烟花
-setInterval(function() {
-    createFirework();
-}, 1000); // 控制烟花触发频率，这里是每秒放置一个烟花
-
 // 启动主循环
 mainLoop();
-
-// 字体定义
-var font = {
-    "新": [
-        [0, 1, 1, 0],
-        [1, 0, 0, 1],
-        [1, 1, 1, 1],
-        [1, 0, 0, 1],
-        [1, 1, 1, 1]
-    ],
-    "年": [
-        [1, 1, 1, 1],
-        [1, 0, 0, 1],
-        [1, 1, 1, 1],
-        [1, 0, 0, 1],
-        [1, 1, 1, 1]
-    ],
-    "快": [
-        [0, 1, 0],
-        [1, 0, 1],
-        [1, 1, 1],
-        [1, 0, 1],
-        [0, 1, 0]
-    ],
-    "乐": [
-        [1, 0, 1, 1, 0, 1],
-        [1, 0, 1, 0, 1, 1],
-        [1, 1, 0, 0, 1, 0],
-        [1, 0, 1, 0, 1, 1],
-        [1, 0, 1, 1, 0, 1]
-    ]
-};
 
 </script>
 </body>
