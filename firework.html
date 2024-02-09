@@ -68,10 +68,8 @@ class Particle {
     }
 }
 
-// 创建烟花效果
-function createFirework() {
-    let x = Math.random() * canvas.width;
-    let y = Math.random() * canvas.height;
+// 创建烟花效果，添加 x 和 y 参数
+function createFirework(x, y) {
     let color = [Math.random() * 256, Math.random() * 256, Math.random() * 256]; // 随机颜色
     for (let i = 0; i < 100; i++) {
         particles.push(new Particle(x, y, color));
@@ -127,26 +125,33 @@ mainLoop();
 
 // 字体定义
 var font = {
-    "happy": [
+    "新": [
         [0, 1, 1, 0],
         [1, 0, 0, 1],
         [1, 1, 1, 1],
         [1, 0, 0, 1],
         [1, 1, 1, 1]
     ],
-    "new": [
+    "年": [
         [1, 1, 1, 1],
         [1, 0, 0, 1],
         [1, 1, 1, 1],
         [1, 0, 0, 1],
         [1, 1, 1, 1]
     ],
-    "year": [
+    "快": [
         [0, 1, 0],
         [1, 0, 1],
         [1, 1, 1],
         [1, 0, 1],
         [0, 1, 0]
+    ],
+    "乐": [
+        [1, 0, 1, 1, 0, 1],
+        [1, 0, 1, 0, 1, 1],
+        [1, 1, 0, 0, 1, 0],
+        [1, 0, 1, 0, 1, 1],
+        [1, 0, 1, 1, 0, 1]
     ]
 };
 
